@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MakeATrinkspruch.Api.Data.TransferObjects;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,12 +14,42 @@ namespace MakeATrinkspruch.Api.Data.Entities
         [Required]
         public string ToastText { get; set; }
 
+        [Required]
+        public bool Reviewed { get; set; }
+
         public IEnumerable<ToastTag> ToastTags { get; set; }
 
-        public Toast Clone()
+        public ToastDto ToDto()
         {
-            string serialized = JsonConvert.SerializeObject(this);
-            return JsonConvert.DeserializeObject<Toast>(serialized);
+            List<TagDto> tags = new List<TagDto>();
+
+            if (ToastTags != null)
+            {
+                foreach (ToastTag toastTag in ToastTags)
+                {
+                    tags.Add(toastTag.Tag.ToDto());
+                }
+
+                ToastDto dto = new ToastDto()
+                {
+                    Id = this.Id,
+                    ToastText = this.ToastText,
+                    Reviewed = this.Reviewed,
+                    Tags = tags
+                };
+                return dto;
+            }
+            else
+            {
+                ToastDto dto = new ToastDto()
+                {
+                    Id = this.Id,
+                    ToastText = this.ToastText,
+                    Reviewed = this.Reviewed,
+                    Tags = new List<TagDto>()
+                };
+                return dto;
+            }
         }
     }
 }

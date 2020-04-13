@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MakeATrinkspruch.Api.Data.TransferObjects;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,10 +16,13 @@ namespace MakeATrinkspruch.Api.Data.Entities
 
         public IEnumerable<ToastTag> ToastTags { get; set; }
 
-        public Tag Clone()
+        internal TagDto ToDto()
         {
-            string serialized = JsonConvert.SerializeObject(this);
-            return JsonConvert.DeserializeObject<Tag>(serialized);
+            return new TagDto()
+            {
+                Id = this.Id,
+                TagName = this.TagName
+            };
         }
     }
 }

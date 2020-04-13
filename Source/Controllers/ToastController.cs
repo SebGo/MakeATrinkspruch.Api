@@ -1,9 +1,9 @@
-﻿using MakeATrinkspruch.Api.Data.Entities;
-using MakeATrinkspruch.Api.Database;
+﻿using MakeATrinkspruch.Api.Data.TransferObjects;
 using MakeATrinkspruch.Api.DataServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MakeATrinkspruch.Api.Controllers
@@ -21,32 +21,83 @@ namespace MakeATrinkspruch.Api.Controllers
             this.dataService = new ToastDataService(dbContext, loggerFactory);
         }
 
-        /*
-        [HttpPut]
-        public ActionResult<Toast> InsertNewToast(Toast toast)
+        [HttpPost]
+        public ActionResult<ToastDto> CreateNewToast([FromBody]ToastDto toast)
         {
             try
             {
                 if (toast == null)
                 {
-                    return
+                    return BadRequest();
                 }
-                var res = dataService.Create(toast);
+
+                ToastDto res = dataService.Create(toast);
+                return Ok(res);
             }
             catch (Exception e)
             {
                 logger.LogError(e.Message);
                 return BadRequest(e.Message);
             }
-        }*/
+        }
 
-        [HttpGet]
-        public async Task<ActionResult<string>> GetRandomToast()
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ToastDto>> UpdateToast(Guid id, [FromBody]ToastDto toastDto)
         {
             try
             {
-                string res = await dataService.GetRandomToast();
+                if (toastDto == null || (toastDto.Id != id))
+                {
+                    return BadRequest();
+                }
+
+                ToastDto res = await dataService.UpdateAsync(id, toastDto);
                 return Ok(res);
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e.Message);
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("GetRandom")]
+        public async Task<ActionResult<ToastDto>> GetRandomToast()
+        {
+            try
+            {
+                ToastDto res = await dataService.GetRandomToast();
+                return Ok(res);
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e.Message);
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("GetAll")]
+        public async Task<ActionResult<IEnumerable<ToastDto>>> GetAll()
+        {
+            try
+            {
+                IEnumerable<ToastDto> res = await dataService.GetAllToastsAsync();
+                return Ok(res);
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e.Message);
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteToastAsync(Guid id)
+        {
+            try
+            {
+                await dataService.DeleteAsync(id);
+                return Ok();
             }
             catch (Exception e)
             {

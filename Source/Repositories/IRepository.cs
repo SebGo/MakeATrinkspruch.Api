@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -6,23 +7,23 @@ namespace MakeATrinkspruch.Api.Repositories
 {
     public interface IRepository<T> where T : class
     {
-        T GetById(Expression<bool> identifierexpression);
+        T Get(Expression<Func<T, bool>> identifierexpression);
 
-        Task<T> GetByIdAsync(Expression<bool> identifierexpression);
+        Task<T> GetAsync(Expression<Func<T, bool>> identifierexpression);
 
         IEnumerable<T> GetAll();
 
         Task<IEnumerable<T>> GetAllAsync();
 
-        T Update(T entity, Expression<bool> identifierexpression);
+        T Update(T updated);
 
-        Task<T> UpdateAsync(T updated, Expression<bool> identifierexpression);
+        Task<T> UpdateAsync(T updated);
 
-        void Create(T entity);
+        T Create(T entity);
 
-        int Delete(Expression<bool> identifierexpression);
+        int Delete(Expression<Func<T, bool>> identifierexpression);
 
-        Task<int> DeleteAsync(Expression<bool> identifierexpression);
+        Task<int> DeleteAsync(Expression<Func<T, bool>> identifierexpression);
 
         public int Count();
 

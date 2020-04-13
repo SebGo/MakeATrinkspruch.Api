@@ -1,17 +1,15 @@
-﻿using MakeATrinkspruch.Api.Database;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace MakeATrinkspruch.Api.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly AppDBContext dbContext;
+        protected readonly AppDBContext dbContext;
 
         public Repository(AppDBContext dbContext)
         {
@@ -23,78 +21,73 @@ namespace MakeATrinkspruch.Api.Repositories
             return dbContext.Set<T>().Count();
         }
 
-        public async Task<int> CountAsync()
+        public virtual async Task<int> CountAsync()
         {
             return await dbContext.Set<T>().CountAsync();
         }
 
-        public void Create(T entity)
+        public virtual T Create(T entity)
         {
             dbContext.Set<T>().Add(entity);
+            dbContext.SaveChanges();
+            return entity;
         }
 
-        public int Delete(Expression<bool> identifierexpression)
+        public virtual int Delete(Expression<Func<T, bool>> identifierexpression)
         {
-            T entity = GetById(identifierexpression);
+            T entity = Get(identifierexpression);
             dbContext.Set<T>().Remove(entity);
             return dbContext.SaveChanges();
         }
 
-        public async Task<int> DeleteAsync(Expression<bool> identifierexpression)
+        public virtual async Task<int> DeleteAsync(Expression<Func<T, bool>> identifierexpression)
         {
-            T entity = await GetByIdAsync(identifierexpression);
+            T entity = await GetAsync(identifierexpression);
             dbContext.Set<T>().Remove(entity);
             return await dbContext.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             return dbContext.Set<T>().ToList();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await dbContext.Set<T>().ToListAsync();
         }
 
-        public T GetById(Expression<bool> identifierexpression)
+        public virtual T Get(Expression<Func<T, bool>> identifierexpression)
         {
-            return dbContext.Set<T>().Find(identifierexpression);
+            return dbContext.Set<T>().FirstOrDefault(identifierexpression);
         }
 
-        public async Task<T> GetByIdAsync(Expression<bool> identifierexpression)
+        public virtual async Task<T> GetAsync(Expression<Func<T, bool>> identifierexpression)
         {
-            return await dbContext.Set<T>().FindAsync(identifierexpression);
+            return await dbContext.Set<T>().FirstOrDefaultAsync(identifierexpression);
         }
 
-        public T Update(T updated, Expression<bool> identifierExpression)
+        public virtual T Update(T updated)
         {
             if (updated == null)
-                return null;
-
-            T existing = GetById(identifierExpression);
-
-            if (existing != null)
             {
-                dbContext.Entry(existing).CurrentValues.SetValues(updated);
-                dbContext.SaveChanges();
+                throw new ArgumentException("Angegebene Entity ist null");
             }
-            return existing;
+            dbContext.Update(updated);
+            dbContext.SaveChanges();
+            return updated;
         }
 
-        public async Task<T> UpdateAsync(T updated, Expression<bool> identifierExpression)
+        public virtual async Task<T> UpdateAsync(T updated)
         {
             if (updated == null)
-                return null;
-
-            T existing = await GetByIdAsync(identifierExpression);
-
-            if (existing != null)
             {
-                dbContext.Entry(existing).CurrentValues.SetValues(updated);
-                await dbContext.SaveChangesAsync();
+                throw new ArgumentException("Angegebene Entity ist null");
             }
-            return existing;
+
+            dbContext.Update(updated);
+            await dbContext.SaveChangesAsync();
+            return updated;
         }
     }
 }
