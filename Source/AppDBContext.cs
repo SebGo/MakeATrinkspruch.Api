@@ -7,6 +7,7 @@ namespace MakeATrinkspruch.Api
     {
         public DbSet<Toast> Toasts { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<ToastTag> ToastTag { get; set; }
 
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
         {

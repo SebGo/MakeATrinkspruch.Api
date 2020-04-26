@@ -65,17 +65,25 @@ namespace MakeATrinkspruch.Api.DataServices
             }
         }
 
-        public async Task<ToastDto> GetRandomToast()
+        public async Task<ToastDto> GetRandomToast(List<Guid> tagIds)
         {
-            IEnumerable<Toast> toast = await toastRepository.GetAllAsync();
-            int numberOfToasts = await toastRepository.CountAsync();
+            IEnumerable<Toast> toasts;
+            if (!tagIds.Any())
+            {
+                toasts = await toastRepository.GetAllAsync();
+            }
+            else
+            {
+                toasts = await toastRepository.GetFilteredByTagIds(tagIds);
+            }
+            int numberOfToasts = toasts.Count();
             if (numberOfToasts == 0)
             {
                 return new ToastDto();
             }
 
             int index = random.Next(0, numberOfToasts);
-            Toast res = toast.ElementAt(index);
+            Toast res = toasts.ElementAt(index);
             return res.ToDto();
         }
 

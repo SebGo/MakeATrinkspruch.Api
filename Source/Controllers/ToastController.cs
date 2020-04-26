@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace MakeATrinkspruch.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ToastController : ControllerBase
     {
         private readonly ILogger<ToastController> logger;
@@ -62,11 +62,11 @@ namespace MakeATrinkspruch.Api.Controllers
         }
 
         [HttpGet("GetRandom")]
-        public async Task<ActionResult<ToastDto>> GetRandomToast()
+        public async Task<ActionResult<ToastDto>> GetRandomToast([FromHeader]List<Guid> tagIds)
         {
             try
             {
-                ToastDto res = await dataService.GetRandomToast();
+                ToastDto res = await dataService.GetRandomToast(tagIds);
                 return Ok(res);
             }
             catch (Exception e)
