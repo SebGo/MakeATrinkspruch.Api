@@ -1,5 +1,6 @@
-﻿using MakeATrinkspruch.Api.Data.TransferObjects;
-using MakeATrinkspruch.Api.DataServices;
+﻿using MakeATrinkspruch.Api.DataServices;
+using MakeATrinkspruch.Data;
+using MakeATrinkspruch.Data.TransferObjects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -22,7 +23,7 @@ namespace MakeATrinkspruch.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ToastDto> CreateNewToast([FromBody]ToastDto toast)
+        public ActionResult<ToastDto> CreateNewToast([FromBody] ToastDto toast)
         {
             try
             {
@@ -42,7 +43,7 @@ namespace MakeATrinkspruch.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<ToastDto>> UpdateToast(Guid id, [FromBody]ToastDto toastDto)
+        public async Task<ActionResult<ToastDto>> UpdateToast(Guid id, [FromBody] ToastDto toastDto)
         {
             try
             {
@@ -62,7 +63,7 @@ namespace MakeATrinkspruch.Api.Controllers
         }
 
         [HttpGet("GetRandom")]
-        public async Task<ActionResult<ToastDto>> GetRandomToast([FromHeader]List<Guid> tagIds)
+        public async Task<ActionResult<ToastDto>> GetRandomToast([FromHeader] List<Guid> tagIds)
         {
             try
             {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MakeATrinkspruch.Api.Data.TransferObjects
+namespace MakeATrinkspruch.Data.TransferObjects
 {
     public class TagDto
     {

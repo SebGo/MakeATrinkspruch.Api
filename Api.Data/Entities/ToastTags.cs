@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MakeATrinkspruch.Api.Data.Entities
+namespace MakeATrinkspruch.Data.Entities
 {
     public class ToastTag
     {

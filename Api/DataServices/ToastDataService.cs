@@ -1,11 +1,12 @@
-﻿using MakeATrinkspruch.Api.Data.Entities;
-using MakeATrinkspruch.Api.Data.TransferObjects;
+﻿using MakeATrinkspruch.Data.Entities;
+using MakeATrinkspruch.Data.TransferObjects;
 using MakeATrinkspruch.Api.Repositories;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MakeATrinkspruch.Data;
 
 namespace MakeATrinkspruch.Api.DataServices
 {

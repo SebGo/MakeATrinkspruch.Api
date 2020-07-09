@@ -1,4 +1,5 @@
-﻿using MakeATrinkspruch.Api.Data.Entities;
+﻿using MakeATrinkspruch.Data;
+using MakeATrinkspruch.Data.Entities;
 using System;
 using System.Collections.Generic;
 

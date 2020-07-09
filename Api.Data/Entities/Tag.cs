@@ -1,10 +1,10 @@
-﻿using MakeATrinkspruch.Api.Data.TransferObjects;
+﻿using MakeATrinkspruch.Data.TransferObjects;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MakeATrinkspruch.Api.Data.Entities
+namespace MakeATrinkspruch.Data.Entities
 {
     public class Tag
     {
@@ -16,7 +16,7 @@ namespace MakeATrinkspruch.Api.Data.Entities
 
         public IEnumerable<ToastTag> ToastTags { get; set; }
 
-        internal TagDto ToDto()
+        public TagDto ToDto()
         {
             return new TagDto()
             {

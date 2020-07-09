@@ -3,29 +3,25 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>MakeATrinkspruch.Api</AssemblyName>
+    <RootNamespace>MakeATrinkspruch.Api</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200411170136_InitialCreate.cs" />
-    <Compile Remove="Migrations\20200411170136_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20200418193645_Test.cs" />
-    <Compile Remove="Migrations\20200418193645_Test.Designer.cs" />
-    <Compile Remove="Migrations\20200418193810_Test.cs" />
-    <Compile Remove="Migrations\20200418193810_Test.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Autofac" Version="5.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
+    <PackageReference Include="Autofac" Version="5.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.3.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.3.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.3.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Api.Data\MakeATrinkspruch.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +38,4 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
-
 </Project>

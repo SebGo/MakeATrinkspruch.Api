@@ -1,6 +1,7 @@
-﻿using MakeATrinkspruch.Api.Data.Entities;
-using MakeATrinkspruch.Api.Data.TransferObjects;
-using MakeATrinkspruch.Api.Repositories;
+﻿using MakeATrinkspruch.Api.Repositories;
+using MakeATrinkspruch.Data;
+using MakeATrinkspruch.Data.Entities;
+using MakeATrinkspruch.Data.TransferObjects;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;

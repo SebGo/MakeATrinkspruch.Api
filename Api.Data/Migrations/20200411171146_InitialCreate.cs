@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MakeATrinkspruch.Api.Migrations
+namespace MakeATrinkspruch.Data.Migrations
 {
     public partial class InitialCreate : Migration
     {

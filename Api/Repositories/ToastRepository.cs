@@ -1,5 +1,6 @@
-﻿using MakeATrinkspruch.Api.Data.Entities;
-using MakeATrinkspruch.Api.Data.TransferObjects;
+﻿using MakeATrinkspruch.Data;
+using MakeATrinkspruch.Data.Entities;
+using MakeATrinkspruch.Data.TransferObjects;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

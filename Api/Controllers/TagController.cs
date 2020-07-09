@@ -1,5 +1,6 @@
-﻿using MakeATrinkspruch.Api.Data.TransferObjects;
-using MakeATrinkspruch.Api.DataServices;
+﻿using MakeATrinkspruch.Api.DataServices;
+using MakeATrinkspruch.Data;
+using MakeATrinkspruch.Data.TransferObjects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -23,7 +24,7 @@ namespace MakeATrinkspruch.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<TagDto> CreateNewTag([FromBody]TagDto tag)
+        public ActionResult<TagDto> CreateNewTag([FromBody] TagDto tag)
         {
             try
             {

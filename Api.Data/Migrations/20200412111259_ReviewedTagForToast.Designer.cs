@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace MakeATrinkspruch.Api.Migrations
+namespace MakeATrinkspruch.Data.Migrations
 {
     [DbContext(typeof(AppDBContext))]
     [Migration("20200412111259_ReviewedTagForToast")]

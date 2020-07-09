@@ -1,7 +1,7 @@
-﻿using MakeATrinkspruch.Api.Data.Entities;
+﻿using MakeATrinkspruch.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace MakeATrinkspruch.Api
+namespace MakeATrinkspruch.Data
 {
     public class AppDBContext : DbContext
     {

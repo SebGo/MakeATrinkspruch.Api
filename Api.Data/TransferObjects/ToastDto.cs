@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace MakeATrinkspruch.Api.Data.TransferObjects
+namespace MakeATrinkspruch.Data.TransferObjects
 {
     public class ToastDto
     {

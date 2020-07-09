@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MakeATrinkspruch.Api", "Source\MakeATrinkspruch.Api.csproj", "{3F11A8A7-F8CB-42B7-9C4A-1ABB5C82E728}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MakeATrinkspruch.Api", "Api\MakeATrinkspruch.Api.csproj", "{3F11A8A7-F8CB-42B7-9C4A-1ABB5C82E728}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MakeATrinkspruch.Data", "Api.Data\MakeATrinkspruch.Data.csproj", "{5B33251F-73DC-4C41-B567-A89D20480879}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3F11A8A7-F8CB-42B7-9C4A-1ABB5C82E728}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F11A8A7-F8CB-42B7-9C4A-1ABB5C82E728}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F11A8A7-F8CB-42B7-9C4A-1ABB5C82E728}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B33251F-73DC-4C41-B567-A89D20480879}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B33251F-73DC-4C41-B567-A89D20480879}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B33251F-73DC-4C41-B567-A89D20480879}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B33251F-73DC-4C41-B567-A89D20480879}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
