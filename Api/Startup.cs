@@ -1,4 +1,5 @@
 using MakeATrinkspruch.Data;
+using MakeATrinkspruch.Data.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -51,6 +52,9 @@ namespace MakeATrinkspruch.Api
         {
             string connectionString = Configuration.GetConnectionString("MakeATrinkspruchConnection");
             services.AddDbContext<AppDBContext>(options => options.UseMySql(connectionString));
+
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<AppDBContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,7 +69,11 @@ namespace MakeATrinkspruch.Api
 
             app.UseRouting();
 
+            //app.UseAuthentication();
+
             app.UseAuthorization();
+
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
